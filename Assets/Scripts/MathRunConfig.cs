@@ -12,7 +12,7 @@ namespace MathRun
 
         public const int NUMBER_LIMIT_UPDATE_SPEED = 10;
         public const float SPEED_CHANGE_PERCENT = 5f;
-        public const float SPEED = 6f;
+        public const float SPEED = 10f;
         public const float HORIZONTAL_SPEED = 3f;
         public const float JUMP_FORCE = 5f;
 
