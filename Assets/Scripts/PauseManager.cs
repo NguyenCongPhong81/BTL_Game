@@ -6,11 +6,13 @@ public class PauseManager : MonoBehaviour
 {
     // Start is called before the first frame update
     public static bool paused = false;
+
+    public GameObject menu;
     
     PauseAction action;
 
     private void Awake(){
-        action = PauseAction;
+        action = new PauseAction();
     }
     private void OnEnable() {
         action.Enable();
@@ -39,6 +41,7 @@ public class PauseManager : MonoBehaviour
         Time.timeScale = 0;
         //AudioListener.pause=true; 
         paused = true;
+        menu.SetActive(true);
     }
 
     public void ResumeGame()
@@ -46,5 +49,6 @@ public class PauseManager : MonoBehaviour
         Time.timeScale =1;   
         //AudioListener.pause=false; 
         paused = false;    
+        menu.SetActive(false);
     }
 }
