@@ -58,5 +58,15 @@ namespace MathRun
         {
             _currentWoodItem = data;
         }
+
+        public void Reset()
+        {
+            _woodItems.ForEach(x =>
+            {
+                x.gameObject.SetActive(false);
+                x.Index = 0;
+            });
+            _indexWood = 0;
+        }
     }
 }

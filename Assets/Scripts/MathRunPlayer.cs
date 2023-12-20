@@ -27,11 +27,25 @@ namespace MathRun
         {
             _animator = GetComponent<Animator>();
             _animator.SetTrigger(MathRunConfig.IDLE);
+            SetGravity(MathRunConfig.GRAVITY_NORMAL);
         }
 
-        void Update()
+        private void OnTriggerEnter(Collider other)
         {
+            if(other.gameObject.layer == MathRunConfig.LAYER_DEAD) 
+            {
+                if (GetState() != PlayerState.DEAD && GetState() != PlayerState.WIN)
+                {
+                    Debug.LogError("dead");
+                    Dead();
+                    //MathRun.Instance.EndGame();
+                }
+            }
+        }
 
+        public void SetGravity(float gravity)
+        {
+            Physics.gravity = new Vector3(0, gravity, 0);
         }
 
         public void SetAnimRun()
@@ -84,6 +98,11 @@ namespace MathRun
             transform.position = pos;
         }
 
+        private bool CanSpawnWood()
+        {
+            return (DateTime.UtcNow - _timeEndSpawnWood).TotalSeconds > MathRunConfig.TIME_DELAY_SPAWN_WOOD && MathRunData.Instance.CountWood > 0;
+        }
+
         private void DetectInputWindow()
         {
             if (GetState() != PlayerState.STACK_WOOD)
@@ -99,38 +118,48 @@ namespace MathRun
                 }
             }
 
-            //if (CanSpawnWood())
-            //{
-            //    if (Input.GetKeyDown(KeyCode.Space))
-            //    {
-            //        SetState(PlayerState.STACK_WOOD);
-            //        var pos = transform.position;
-            //        _posZStart = pos.z;
-            //        wood.SetCurrentItem(null);
-            //    }
-
-            if (Input.GetKey(KeyCode.Space))
+            if (CanSpawnWood())
             {
-                SetState(PlayerState.STACK_WOOD);
-                SpawnWood();
+                if (Input.GetKeyDown(KeyCode.Space))
+                {
+                    SetState(PlayerState.STACK_WOOD);
+                    var pos = transform.position;
+                    _posZStart = pos.z;
+                    wood.SetCurrentItem(null);
+                }
+
+                if (Input.GetKey(KeyCode.Space))
+                {
+                    SetState(PlayerState.STACK_WOOD);
+                    SpawnWood();
+                }
+
+                if (Input.GetKeyUp(KeyCode.Space))
+                {
+                    SetState(PlayerState.RUN);
+                    wood.SetCurrentItem(null);
+                    _timeEndSpawnWood = DateTime.UtcNow;
+                }
+            }
+            else
+            {
+                if (MathRunData.Instance.CountWood <= 0 && GetState() != PlayerState.RUN)
+                {
+                    SetState(PlayerState.RUN);
+                }
             }
 
-            //    if (Input.GetKeyUp(KeyCode.Space))
-            //    {
-            //        SetState(PlayerState.RUN);
-            //        wood.SetCurrentItem(null);
-            //        _timeEndSpawnWood = DateTime.UtcNow;
-            //    }
-            //}
-            //else
-            //{
-            //    if (MathRunDataManager.Instance.CountWood <= 0 && GetState() != PlayerState.RUN)
-            //    {
-            //        SetState(PlayerState.RUN);
-            //    }
-            //}
 
 
+        }
+        private void Dead()
+        {
+            camera.Follow = null;
+            //SoundManager.Instance.PlaySfx(ESoundType.MathRun_Sfx_Dead);
+            wood.Reset();
+            _animator.SetTrigger(MathRunConfig.IDLE);
+            SetState(PlayerState.DEAD);
+            SetGravity(MathRunConfig.GRAVITY_DEAD);
         }
         public void SetState(PlayerState state)
         {
