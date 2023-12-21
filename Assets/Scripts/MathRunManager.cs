@@ -8,11 +8,13 @@ namespace MathRun
     public class MathRunManager : MonoBehaviour
     {
         [SerializeField] private MathRunPlayer player;
+        [SerializeField] private MathRunUI mathRunUI;
 
         private bool _isGameStarted = false;
         void Start()
         {
             player.SetState(PlayerState.IDLE);
+            UpdateWood();
         }
 
         
@@ -33,6 +35,11 @@ namespace MathRun
             _isGameStarted = true;
             player.SetAnimRun();
             player.SetState(PlayerState.RUN);
+        }
+
+        public void UpdateWood()
+        {
+            mathRunUI.SetCountWood();
         }
     }
 }

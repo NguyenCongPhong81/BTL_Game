@@ -38,9 +38,9 @@ namespace MathRun
         public const float GRAVITY_NORMAL = -50f;
 
         public const int POINT_BONUS = 1;
-        public const int LAYER_DEAD = 10;
-        public const int LAYER_WIN = 11;
-        public const int LAYER_PLAYER = 12;
+        public const int LAYER_DEAD = 6;
+        public const int LAYER_WIN = 7;
+        public const int LAYER_PLAYER = 8;
         //anim 
 
         public const string RUN = "Run";

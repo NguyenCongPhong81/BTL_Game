@@ -34,12 +34,12 @@ namespace MathRun
         {
             if(other.gameObject.layer == MathRunConfig.LAYER_DEAD) 
             {
-                if (GetState() != PlayerState.DEAD && GetState() != PlayerState.WIN)
-                {
-                    Debug.LogError("dead");
-                    Dead();
-                    //MathRun.Instance.EndGame();
-                }
+                //if (GetState() != PlayerState.DEAD && GetState() != PlayerState.WIN)
+                //{
+                //    Debug.LogError("dead");
+                //    Dead();
+                //    //MathRun.Instance.EndGame();
+                //}
             }
         }
 
