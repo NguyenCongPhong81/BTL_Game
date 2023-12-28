@@ -9,6 +9,7 @@ namespace MathRun
     {
         [SerializeField] private MathRunPlayer player;
         [SerializeField] private MathRunUI mathRunUI;
+        [SerializeField] private MathRunMap map;
 
         private bool _isGameStarted = false;
 
@@ -38,6 +39,7 @@ namespace MathRun
             }
             if (!_isGameStarted || player.GetState() == PlayerState.DEAD || player.GetState() == PlayerState.WIN) return;
             player.Run();
+            map.Init(player);
             
             
         }

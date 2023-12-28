@@ -8,11 +8,11 @@ namespace MathRun
     {
         public const float TIME_END_GAME = 180f;
 
-        public const int COUNT_WOOD_START = 40;
+        public const int COUNT_WOOD_START = 100;
 
         public const int NUMBER_LIMIT_UPDATE_SPEED = 10;
         public const float SPEED_CHANGE_PERCENT = 5f;
-        public const float SPEED = 10f;
+        public const float SPEED = 8f;
         public const float HORIZONTAL_SPEED = 3f;
         public const float JUMP_FORCE = 5f;
 

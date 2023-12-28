@@ -21,5 +21,14 @@ namespace MathRun
                 MathRunManager.Instance.UpdateWood();
         }
 
+        public void MinusWood(int wood)
+        {
+            if (CountWood <= 0) return;
+            CountWood -= wood;
+            CountWoodUsed += wood;
+            if (MathRunManager.Instance)
+                MathRunManager.Instance.UpdateWood();
+        }
+
     }
 }

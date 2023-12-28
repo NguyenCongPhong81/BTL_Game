@@ -30,6 +30,31 @@ namespace MathRun
             InitFirstMap();
         }
 
+        public void Init(MathRunPlayer player)
+        {
+            if (player.transform.position.z > transform.GetChild(1).position.z + 5f)
+            {
+                transform.GetChild(0).gameObject.SetActive(false);
+                transform.GetChild(0).gameObject.transform.SetAsLastSibling();
+                _currentIndex++;
+
+                var mapData = GetMapData(GetTypeMap());
+
+                var poolItem = GetItemInPool(mapData.Type, mapData.ID);
+
+                if (poolItem == null)
+                {
+                    poolItem = Instantiate(mapData, transform);
+                    GetPool(mapData.Type).Add(poolItem);
+                }
+
+                poolItem.Init();
+                poolItem.name = (poolItem.name + _currentIndex).ToString();
+                poolItem.gameObject.transform.position = Vector3.forward * _currentIndex * MathRunConfig.LENGHT_PER_MAP;
+                poolItem.gameObject.transform.SetSiblingIndex(2);
+            }
+        }
+
         private void InitFirstMap()
         {
             var firstMapItem = mapItems.Where(x => x.Type == MapType.EASY).Take(3).ToList();
@@ -66,6 +91,31 @@ namespace MathRun
                 MapType.VERY_HARD => _poolVeryHard,
                 _ => null,
             };
+        }
+
+        private MapType GetTypeMap()
+        {
+            if (++_countMapEasy <= 6)
+                return MapType.EASY;
+            if (++_countMapNormal <= 8)
+                return MapType.NORMAL;
+            if (++_countMapHard <= 4)
+                return MapType.VERY_HARD;
+            return MapType.VERY_HARD;
+        }
+
+        private MathRunMapItem GetMapData(MapType type = MapType.EASY)
+        {
+            var mapData = mapItems.Where(x => x.Type == type).ToList();
+            return mapData[Random.Range(0, mapData.Count())];
+        }
+
+        private List<MathRunMapItem> GetAllMap()
+        {
+            var map = new List<MathRunMapItem>(_poolEasy);
+            map.AddRange(_poolNormal);
+            map.AddRange(_poolVeryHard);
+            return map;
         }
 
 

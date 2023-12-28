@@ -30,7 +30,7 @@ namespace MathRun
 
             _currentWoodItem = wood;
             //SoundManager.Instance.PlaySfx(ESoundType.MathRun_Sfx_Use_Wood);
-            //MathRunDataManager.Instance.MinusWood(1);
+            MathRunData.Instance.MinusWood(1);
 
             return wood.gameObject;
         }
