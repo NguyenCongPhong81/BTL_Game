@@ -11,6 +11,18 @@ namespace MathRun
         [SerializeField] private MathRunUI mathRunUI;
 
         private bool _isGameStarted = false;
+
+        public static MathRunManager Instance;
+
+        private void Awake()
+        {
+            Instance = this;
+        }
+
+        private void OnDisable()
+        {
+            Physics.gravity = new Vector3(0, -9.8f, 0);
+        }
         void Start()
         {
             player.SetState(PlayerState.IDLE);

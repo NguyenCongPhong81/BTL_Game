@@ -72,12 +72,11 @@ namespace MathRun
             if (other.gameObject.layer == MathRunConfig.LAYER_PLAYER)
             {
                 _onTrigger?.Invoke();
-                Debug.Log("va");
                 //SoundManager.Instance.PlaySfx(ESoundType.MathRun_Sfx_Trigger_Point);
                 //effect?.Play();
-                //boxCollider.enabled = false;
-                //UpdateScore();
-                //MathRunDataManager.Instance.AddWood(_caculate, _value);
+                boxCollider.enabled = false;
+                UpdateScore();
+                MathRunData.Instance.AddWood(_caculate, _value);
             }
         }
 
