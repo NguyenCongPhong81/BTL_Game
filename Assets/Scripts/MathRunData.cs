@@ -6,6 +6,8 @@ namespace MathRun
 {
     public class MathRunData : Singleton<MathRunData>
     {
+        public float DistanceMove { get; private set; } = 0;
+
         public int CountWood { get; private set; } = MathRunConfig.COUNT_WOOD_START;
 
         public int CountPointItem = 0;
@@ -28,6 +30,14 @@ namespace MathRun
             CountWoodUsed += wood;
             if (MathRunManager.Instance)
                 MathRunManager.Instance.UpdateWood();
+        }
+
+        public void AddDistance(float distance)
+        {
+            DistanceMove = (int)distance;
+            if (MathRunManager.Instance)
+                MathRunManager.Instance.UpdateDistance();
+
         }
 
     }

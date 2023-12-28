@@ -40,6 +40,7 @@ namespace MathRun
             if (!_isGameStarted || player.GetState() == PlayerState.DEAD || player.GetState() == PlayerState.WIN) return;
             player.Run();
             map.Init(player);
+            UpdateDistanceMove(player);
             
             
         }
@@ -54,6 +55,17 @@ namespace MathRun
         public void UpdateWood()
         {
             mathRunUI.SetCountWood();
+        }
+
+        public void UpdateDistance()
+        {
+            mathRunUI.SetDistance();
+        }
+
+        private void UpdateDistanceMove(MathRunPlayer player)
+        {
+            var pos = player.transform.localPosition;
+            MathRunData.Instance.AddDistance(pos.z);
         }
     }
 }
