@@ -18,8 +18,8 @@ namespace MathRun
             for (int i = 0; i < pointItems.Count; i++)
             {
                 var caculateRandom = Random.Range(0, 2); // 0 là + , 1 là -
-                var numberRandom = Random.Range(-5, 11);
-                if (numberRandom == 0) numberRandom = Random.Range(1, 11);
+                var numberRandom = Random.Range(-5, 15);
+                if (numberRandom == 0) numberRandom = Random.Range(5, 15);
                 var valueAdd = pointItems[i].PointLost + numberRandom;
                 if (valueAdd <= 0) valueAdd = Random.Range(1, 3);
 
@@ -30,7 +30,7 @@ namespace MathRun
                     {
                         if ((valueAdd == data.value && pointItems[i].PointLost == data.pointLost) || (data.pointBonus == valueAdd - pointItems[i].PointLost))
                         {
-                            var random = Random.Range(1, 4);
+                            var random = Random.Range(1, 10);
                             valueAdd += random;
                         }
                     }
