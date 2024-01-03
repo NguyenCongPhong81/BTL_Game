@@ -28,10 +28,12 @@ namespace MathRun
         {
             _currentIndex = 0;
             InitFirstMap();
+            //InitBackGround();
         }
 
         public void Init(MathRunPlayer player)
         {
+            //InitBackGround(player);
             if (player.transform.position.z > transform.GetChild(1).position.z + 5f)
             {
                 transform.GetChild(0).gameObject.SetActive(false);
@@ -76,6 +78,34 @@ namespace MathRun
                 item.gameObject.transform.position = Vector3.forward * i * MathRunConfig.LENGHT_PER_MAP;
                 item.gameObject.transform.SetSiblingIndex(i);
                 _currentIndex = i;
+            }
+        }
+
+        private void InitBackGround()
+        {
+            for (int i = 0; i < transBG.childCount; i++)
+            {
+                var bgItem = transBG.GetChild(i);
+                bgItem.position = new Vector3(
+                                    bgItem.position.x,
+                                    bgItem.position.y,
+                                    i * MathRunConfig.DISTANCE_PER_BACKGROUND + 200f);
+                bgItem.gameObject.SetActive(true);
+            }
+        }
+
+        public void InitBackGround(MathRunPlayer player)
+        {
+            if (player.transform.position.z > transBG.GetChild(1).position.z + MathRunConfig.DELTA_DISTANCE_BACKGROUND_PLAYER)
+            {
+                var firstBackground = transBG.GetChild(0);
+
+                firstBackground.position =
+                    new Vector3(
+                        firstBackground.position.x,
+                        firstBackground.position.y,
+                        firstBackground.position.z + MathRunConfig.DISTANCE_PER_BACKGROUND);
+                firstBackground.SetAsLastSibling();
             }
         }
         private MathRunMapItem GetItemInPool(MapType type, int id)

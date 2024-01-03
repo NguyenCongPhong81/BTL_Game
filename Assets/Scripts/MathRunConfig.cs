@@ -25,7 +25,7 @@ namespace MathRun
         public const float LENGHT_PER_MAP = 55f;
         public const float DELTA_DISTANCE_MAP_PLAYER = 5f;
         public const float DELTA_DISTANCE_BACKGROUND_PLAYER = 10f;
-        public const float DISTANCE_PER_BACKGROUND = 400f;
+        public const float DISTANCE_PER_BACKGROUND = 470f;
 
         public const float DISTANCE_PLAYER = 0.3f;
         public const float DISTANCE_PER_WOOD = 0.1f;
