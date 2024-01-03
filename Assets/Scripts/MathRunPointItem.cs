@@ -13,7 +13,7 @@ namespace MathRun
         [SerializeField] private TextMeshProUGUI txtValue;
         //[SerializeField] private TextMeshProUGUI txtBonus;
         [SerializeField] private BoxCollider boxCollider;
-        //[SerializeField] private ParticleSystem effect;
+        [SerializeField] private ParticleSystem effect;
         //[SerializeField] private Animator animBonus;
 
         public int PointLost => Math.Abs(pointLost);
@@ -73,7 +73,7 @@ namespace MathRun
             {
                 _onTrigger?.Invoke();
                 //SoundManager.Instance.PlaySfx(ESoundType.MathRun_Sfx_Trigger_Point);
-                //effect?.Play();
+                effect?.Play();
                 boxCollider.enabled = false;
                 UpdateScore();
                 MathRunData.Instance.AddWood(_caculate, _value);
@@ -83,7 +83,7 @@ namespace MathRun
         private void OnValidate()
         {
             boxCollider = GetComponent<BoxCollider>();
-            //effect = GetComponentInChildren<ParticleSystem>();
+            effect = GetComponentInChildren<ParticleSystem>();
             //animBonus = GetComponentInChildren<Animator>();
             //txtBonus = animBonus.gameObject.GetComponent<TextMeshProUGUI>();
         }
