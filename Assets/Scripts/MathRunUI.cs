@@ -16,7 +16,7 @@ public class MathRunUI : MonoBehaviour
 
     public void SetDistance()
     {
-        txtDistance.text = MathRunData.Instance.DistanceMove.ToString();
+        txtDistance.text = MathRunData.Instance.DistanceMove.ToString()+"m";
     }
 
 }

@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.Diagnostics;
+using UnityEngine.UI;
 
 namespace MathRun
 {
@@ -10,6 +11,12 @@ namespace MathRun
         [SerializeField] private MathRunPlayer player;
         [SerializeField] private MathRunUI mathRunUI;
         [SerializeField] private MathRunMap map;
+
+        [Header("UI 2D")]
+        [SerializeField] private GameObject objStartGame;
+        [SerializeField] private Button btnPlay;
+        [SerializeField] private Button btnSetting;
+        [SerializeField] private Button btnTutorial;
 
         private bool _isGameStarted = false;
 
@@ -28,12 +35,13 @@ namespace MathRun
         {
             player.SetState(PlayerState.IDLE);
             UpdateWood();
+            btnPlay.onClick.AddListener(OnClickPlay);
         }
 
         
         void Update()
         {
-            if(player.GetState() == PlayerState.IDLE && (Input.anyKeyDown))
+            if(player.GetState() == PlayerState.IDLE && (Input.GetKeyDown(KeyCode.P)))
             {
                 StartGame();
             }
@@ -66,6 +74,12 @@ namespace MathRun
         {
             var pos = player.transform.localPosition;
             MathRunData.Instance.AddDistance(pos.z);
+        }
+
+        private void OnClickPlay()
+        {
+            objStartGame.SetActive(false);
+
         }
     }
 }
