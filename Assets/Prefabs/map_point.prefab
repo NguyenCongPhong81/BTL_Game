@@ -12,6 +12,7 @@ GameObject:
   - component: {fileID: 575011844575954317}
   - component: {fileID: 798290257538025836}
   - component: {fileID: 8385697342277438408}
+  - component: {fileID: 5831671168763302746}
   m_Layer: 0
   m_Name: point_item (1)
   m_TagString: Untagged
@@ -26,6 +27,7 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 4948716149322637196}
+  serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: -1.444, y: -0.43, z: -0.82}
   m_LocalScale: {x: 1.4, y: 1, z: 0.01}
@@ -33,7 +35,6 @@ Transform:
   m_Children:
   - {fileID: 5270350997044345355}
   m_Father: {fileID: 6808028074719187063}
-  m_RootOrder: -1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!33 &575011844575954317
 MeshFilter:
@@ -100,12 +101,27 @@ BoxCollider:
     serializedVersion: 2
     m_Bits: 0
   m_LayerOverridePriority: 0
-  m_IsTrigger: 0
+  m_IsTrigger: 1
   m_ProvidesContacts: 0
   m_Enabled: 1
   serializedVersion: 3
   m_Size: {x: 1, y: 1, z: 1}
   m_Center: {x: 0, y: 0, z: 0}
+--- !u!114 &5831671168763302746
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4948716149322637196}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 52cc75872439f2c4095e9d53d75dea2a, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  pointLost: 0
+  txtValue: {fileID: 6858603391588349544}
+  boxCollider: {fileID: 8385697342277438408}
 --- !u!1 &5479651215778950225
 GameObject:
   m_ObjectHideFlags: 0
@@ -139,7 +155,6 @@ RectTransform:
   m_Children:
   - {fileID: 5461274391604487811}
   m_Father: {fileID: 784839639870790063}
-  m_RootOrder: -1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 0, y: 0}
@@ -242,7 +257,6 @@ RectTransform:
   m_Children:
   - {fileID: 4072110747759580462}
   m_Father: {fileID: 3052449302267632955}
-  m_RootOrder: -1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 0, y: 0}
@@ -324,6 +338,7 @@ GameObject:
   - component: {fileID: 8296647432183537325}
   - component: {fileID: 4819001338208991607}
   - component: {fileID: 1076192360000573992}
+  - component: {fileID: 5756120333695241364}
   m_Layer: 0
   m_Name: point_item
   m_TagString: Untagged
@@ -338,6 +353,7 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 5902643260870166968}
+  serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 1.52, y: -0.43, z: -0.82}
   m_LocalScale: {x: 1.4, y: 1, z: 0.01}
@@ -345,7 +361,6 @@ Transform:
   m_Children:
   - {fileID: 8873240016217387917}
   m_Father: {fileID: 6808028074719187063}
-  m_RootOrder: -1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!33 &8296647432183537325
 MeshFilter:
@@ -412,12 +427,27 @@ BoxCollider:
     serializedVersion: 2
     m_Bits: 0
   m_LayerOverridePriority: 0
-  m_IsTrigger: 0
+  m_IsTrigger: 1
   m_ProvidesContacts: 0
   m_Enabled: 1
   serializedVersion: 3
   m_Size: {x: 1, y: 1, z: 1}
   m_Center: {x: 0, y: 0, z: 0}
+--- !u!114 &5756120333695241364
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5902643260870166968}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 52cc75872439f2c4095e9d53d75dea2a, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  pointLost: 0
+  txtValue: {fileID: 7611307641630814951}
+  boxCollider: {fileID: 1076192360000573992}
 --- !u!1 &6189455890853545211
 GameObject:
   m_ObjectHideFlags: 0
@@ -428,6 +458,7 @@ GameObject:
   m_Component:
   - component: {fileID: 6808028074719187063}
   - component: {fileID: 913750590703049587}
+  - component: {fileID: 6608662045246512750}
   m_Layer: 0
   m_Name: map_point
   m_TagString: Untagged
@@ -442,6 +473,7 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 6189455890853545211}
+  serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 1.72, y: 1.8, z: 25.63}
   m_LocalScale: {x: 1, y: 1, z: 1}
@@ -450,7 +482,6 @@ Transform:
   - {fileID: 784839639870790063}
   - {fileID: 3052449302267632955}
   m_Father: {fileID: 0}
-  m_RootOrder: -1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!65 &913750590703049587
 BoxCollider:
@@ -467,12 +498,27 @@ BoxCollider:
     serializedVersion: 2
     m_Bits: 0
   m_LayerOverridePriority: 0
-  m_IsTrigger: 0
+  m_IsTrigger: 1
   m_ProvidesContacts: 0
   m_Enabled: 1
   serializedVersion: 3
   m_Size: {x: 7, y: 4, z: 0.01}
   m_Center: {x: 0, y: 0, z: 0}
+--- !u!114 &6608662045246512750
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6189455890853545211}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 8d6ad688ed03e944184f95127fafff5b, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  pointItems:
+  - {fileID: 5756120333695241364}
+  - {fileID: 5831671168763302746}
 --- !u!1 &6497746331324293912
 GameObject:
   m_ObjectHideFlags: 0
@@ -504,7 +550,6 @@ RectTransform:
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 5270350997044345355}
-  m_RootOrder: -1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 1, y: 1}
@@ -639,7 +684,6 @@ RectTransform:
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 8873240016217387917}
-  m_RootOrder: -1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 1, y: 1}
