@@ -33,7 +33,7 @@ namespace MathRun
 
         public void Init(MathRunPlayer player)
         {
-            InitBackGround(player);
+            //InitBackGround(player);
             if (player.transform.position.z > transform.GetChild(1).position.z + 5f)
             {
                 transform.GetChild(0).gameObject.SetActive(false);

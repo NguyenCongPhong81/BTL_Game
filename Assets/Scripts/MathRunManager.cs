@@ -14,6 +14,8 @@ namespace MathRun
 
         [Header("UI 2D")]
         [SerializeField] private GameObject objStartGame;
+        [SerializeField] GameObject popupTutorial;
+        [SerializeField] Button btnClosePopup;
         [SerializeField] private Button btnPlay;
         [SerializeField] private Button btnSetting;
         [SerializeField] private Button btnTutorial;
@@ -36,15 +38,28 @@ namespace MathRun
             player.SetState(PlayerState.IDLE);
             UpdateWood();
             btnPlay.onClick.AddListener(OnClickPlay);
+            btnClosePopup.onClick.AddListener(OnClickCloseTutorial);
+            btnTutorial.onClick.AddListener(OnClickShowTutorial);
+
         }
 
-        
+        private void OnClickCloseTutorial()
+        {
+            popupTutorial.SetActive(false);
+        }
+
+        private void OnClickShowTutorial()
+        {
+            popupTutorial.SetActive(true);
+        }
+
+
         void Update()
         {
-            if(player.GetState() == PlayerState.IDLE && (Input.GetKeyDown(KeyCode.P)))
-            {
-                StartGame();
-            }
+            //if(player.GetState() == PlayerState.IDLE && (Input.GetKeyDown(KeyCode.P)))
+            //{
+            //    StartGame();
+            //}
             if (!_isGameStarted || player.GetState() == PlayerState.DEAD || player.GetState() == PlayerState.WIN) return;
             player.Run();
             map.Init(player);
@@ -55,6 +70,7 @@ namespace MathRun
 
         private void StartGame()
         {
+            SoundManager.Instance.PlayBg(ESoundType.Bg_Game, true);
             _isGameStarted = true;
             player.SetAnimRun();
             player.SetState(PlayerState.RUN);
@@ -79,6 +95,10 @@ namespace MathRun
         private void OnClickPlay()
         {
             objStartGame.SetActive(false);
+            if(player.GetState() == PlayerState.IDLE)
+            {
+                StartGame();
+            }
 
         }
     }

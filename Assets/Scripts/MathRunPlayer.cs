@@ -55,6 +55,7 @@ namespace MathRun
 
         public void SpawnWood()
         {
+            SoundManager.Instance.PlaySfxUseWood(ESoundType.Sfx_Use_Wood);
             var posPlayer = transform.position;
             if (posPlayer.z - _posZStart > MathRunConfig.DISTANCE_PLAYER)
             {

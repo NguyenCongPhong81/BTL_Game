@@ -72,7 +72,7 @@ namespace MathRun
             if (other.gameObject.layer == MathRunConfig.LAYER_PLAYER)
             {
                 _onTrigger?.Invoke();
-                //SoundManager.Instance.PlaySfx(ESoundType.MathRun_Sfx_Trigger_Point);
+                SoundManager.Instance.PlaySfx(ESoundType.Sfx_Trigger_Point);
                 effect?.Play();
                 boxCollider.enabled = false;
                 UpdateScore();
