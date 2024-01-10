@@ -15,7 +15,9 @@ namespace MathRun
         [Header("UI 2D")]
         [SerializeField] private GameObject objStartGame;
         [SerializeField] GameObject popupTutorial;
+        [SerializeField] GameObject popupSetting;
         [SerializeField] Button btnClosePopup;
+        [SerializeField] Button btnClosePopupSetting;
         [SerializeField] private Button btnPlay;
         [SerializeField] private Button btnSetting;
         [SerializeField] private Button btnTutorial;
@@ -39,7 +41,9 @@ namespace MathRun
             UpdateWood();
             btnPlay.onClick.AddListener(OnClickPlay);
             btnClosePopup.onClick.AddListener(OnClickCloseTutorial);
+            btnClosePopupSetting.onClick.AddListener(OnClickCloseSetting);
             btnTutorial.onClick.AddListener(OnClickShowTutorial);
+            btnSetting.onClick.AddListener(OnClickShowSetting);
 
         }
 
@@ -48,9 +52,19 @@ namespace MathRun
             popupTutorial.SetActive(false);
         }
 
+        private void OnClickCloseSetting()
+        {
+            popupSetting.SetActive(false);
+        }
+
         private void OnClickShowTutorial()
         {
             popupTutorial.SetActive(true);
+        }
+
+        private void OnClickShowSetting()
+        {
+            popupSetting.SetActive(true);
         }
 
 
