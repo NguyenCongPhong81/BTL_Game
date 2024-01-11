@@ -148,6 +148,17 @@ namespace MathRun
             return map;
         }
 
+        public void ResetMap()
+        {
+            GetAllMap().ForEach(x => x.Hide());
+            _currentIndex = 0;
+            _countMapEasy = 0;
+            _countMapNormal = 0;
+            _countMapHard = 0;
+            InitFirstMap();
+            InitBackGround();
+        }
+
 
 
 
