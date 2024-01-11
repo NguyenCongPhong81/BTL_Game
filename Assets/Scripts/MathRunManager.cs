@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using TMPro;
 using UnityEngine;
 using UnityEngine.Diagnostics;
 using UnityEngine.UI;
@@ -22,6 +23,12 @@ namespace MathRun
         [SerializeField] private Button btnSetting;
         [SerializeField] private Button btnTutorial;
 
+        [Header("End Game")]
+        [SerializeField] GameObject popupEndGame;
+        [SerializeField] Button btnReplay;
+        [SerializeField] Button btnMenu;
+        [SerializeField] TMP_Text txtEndGameScore;
+
         private bool _isGameStarted = false;
 
         public static MathRunManager Instance;
@@ -37,13 +44,31 @@ namespace MathRun
         }
         void Start()
         {
+            SoundManager.Instance.PlayBg(ESoundType.Bg_Game, true);
             player.SetState(PlayerState.IDLE);
             UpdateWood();
+            ResetGame();
             btnPlay.onClick.AddListener(OnClickPlay);
             btnClosePopup.onClick.AddListener(OnClickCloseTutorial);
             btnClosePopupSetting.onClick.AddListener(OnClickCloseSetting);
             btnTutorial.onClick.AddListener(OnClickShowTutorial);
             btnSetting.onClick.AddListener(OnClickShowSetting);
+            btnReplay.onClick.AddListener(OnClickReplay);
+            btnMenu.onClick.AddListener(OnClickBackMenu);
+
+        }
+
+        void Update()
+        {
+            //if(player.GetState() == PlayerState.IDLE && (Input.GetKeyDown(KeyCode.P)))
+            //{
+            //    StartGame();
+            //}
+            if (!_isGameStarted || player.GetState() == PlayerState.DEAD || player.GetState() == PlayerState.WIN) return;
+            player.Run();
+            map.Init(player);
+            UpdateDistanceMove(player);
+
 
         }
 
@@ -66,28 +91,45 @@ namespace MathRun
         {
             popupSetting.SetActive(true);
         }
-
-
-        void Update()
+        private void OnClickPlay()
         {
-            //if(player.GetState() == PlayerState.IDLE && (Input.GetKeyDown(KeyCode.P)))
-            //{
-            //    StartGame();
-            //}
-            if (!_isGameStarted || player.GetState() == PlayerState.DEAD || player.GetState() == PlayerState.WIN) return;
-            player.Run();
-            map.Init(player);
-            UpdateDistanceMove(player);
-            
-            
+            objStartGame.SetActive(false);
+            if (player.GetState() == PlayerState.IDLE)
+            {
+                StartGame();
+            }
+
         }
+
+        private void OnClickReplay()
+        {
+            ResetGame();
+            StartGame();
+        }
+
+        private void OnClickBackMenu()
+        {
+            ResetGame();
+            _isGameStarted = false;
+            objStartGame.SetActive(true);
+            popupEndGame.SetActive(false);
+        }
+
+
+
+
 
         private void StartGame()
         {
-            SoundManager.Instance.PlayBg(ESoundType.Bg_Game, true);
             _isGameStarted = true;
             player.SetAnimRun();
             player.SetState(PlayerState.RUN);
+        }
+
+        public void EndGame()
+        {
+            popupEndGame.SetActive(true);
+            txtEndGameScore.text = MathRunData.Instance.DistanceMove.ToString();
         }
 
         public void UpdateWood()
@@ -106,14 +148,15 @@ namespace MathRun
             MathRunData.Instance.AddDistance(pos.z);
         }
 
-        private void OnClickPlay()
+        public void ResetGame()
         {
-            objStartGame.SetActive(false);
-            if(player.GetState() == PlayerState.IDLE)
-            {
-                StartGame();
-            }
-
+            popupEndGame.SetActive(false);
+            MathRunData.Instance.ResetData();
+            map.ResetMap();
+            player.ResetPlayer();
+            _isGameStarted= false;
         }
+
+        
     }
 }

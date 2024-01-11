@@ -40,5 +40,27 @@ namespace MathRun
 
         }
 
+        private void ResetDistance()
+        {
+            DistanceMove = 0;
+        }
+
+        private void ResetWood()
+        {
+            CountWood = MathRunConfig.COUNT_WOOD_START;
+            if (MathRunManager.Instance)
+                MathRunManager.Instance.UpdateWood();
+
+        }
+
+        public void ResetData()
+        {
+            CountWoodUsed = 0;
+            CountWoodReceived = MathRunConfig.COUNT_WOOD_START;
+            CountPointItem = 0;
+            ResetDistance();
+            ResetWood();
+        }
+
     }
 }

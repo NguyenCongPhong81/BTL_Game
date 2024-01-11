@@ -2768,6 +2768,10 @@ MonoBehaviour:
   btnPlay: {fileID: 1475150692}
   btnSetting: {fileID: 585680378}
   btnTutorial: {fileID: 137320627}
+  popupEndGame: {fileID: 558924377}
+  btnReplay: {fileID: 34025970}
+  btnMenu: {fileID: 1506693667}
+  txtEndGameScore: {fileID: 635373674}
 --- !u!1001 &1150590237
 PrefabInstance:
   m_ObjectHideFlags: 0

@@ -2,6 +2,7 @@ using Cinemachine;
 using System;
 using System.Collections;
 using System.Collections.Generic;
+using Unity.VisualScripting.FullSerializer;
 using UnityEngine;
 
 namespace MathRun
@@ -34,12 +35,11 @@ namespace MathRun
         {
             if(other.gameObject.layer == MathRunConfig.LAYER_DEAD) 
             {
-                //if (GetState() != PlayerState.DEAD && GetState() != PlayerState.WIN)
-                //{
-                //    Debug.LogError("dead");
-                //    Dead();
-                //    //MathRun.Instance.EndGame();
-                //}
+                if (GetState() != PlayerState.DEAD && GetState() != PlayerState.WIN)
+                {
+                    Dead();
+                    MathRunManager.Instance.EndGame();
+                }
             }
         }
 
@@ -72,6 +72,15 @@ namespace MathRun
             var pos = transform.position;
             pos.z += _speed * Time.deltaTime;
             transform.position = pos;
+            if(pos.z > 600)
+            {
+                _speed = MathRunConfig.SPEED + 4f;
+            }
+            else if(pos.z > 300)
+            {
+                _speed = MathRunConfig.SPEED + 2f;
+            }
+            Debug.Log("speed" + _speed);
             DetectInputWindow();
         }
 
@@ -156,7 +165,7 @@ namespace MathRun
         private void Dead()
         {
             camera.Follow = null;
-            //SoundManager.Instance.PlaySfx(ESoundType.MathRun_Sfx_Dead);
+            SoundManager.Instance.PlaySfx(ESoundType.Sfx_Dead);
             wood.Reset();
             _animator.SetTrigger(MathRunConfig.IDLE);
             SetState(PlayerState.DEAD);
@@ -169,6 +178,20 @@ namespace MathRun
         public PlayerState GetState()
         {
             return _currentState;
+        }
+
+        public void ResetPlayer()
+        {
+            camera.Follow = transform;
+            //_animator.SetTrigger(MathRunConfig.IDLE);
+            transform.localPosition = Vector3.zero;
+            IsWin = false;
+            wood.SetCurrentItem(null);
+            wood.Reset();
+            _speed = MathRunConfig.SPEED;
+            _currenHorizontalSpeed = 0;
+            SetState(PlayerState.IDLE);
+            SetGravity(MathRunConfig.GRAVITY_NORMAL);
         }
 
 
