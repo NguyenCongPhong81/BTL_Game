@@ -65,11 +65,23 @@ public class SoundManager : MonoBehaviour
         PlaySfxUseWood(GetClip(type));
     }
 
+    public void PlaySfxDead(ESoundType type)
+    {
+        PlaySfxDead(GetClip(type));
+    }
+
     private void PlaySfxUseWood(AudioClip audioClip)
     {
         StopSfxUseWood();
         bgSfxUseWood.clip = audioClip;
         bgSfxUseWood.Play();
+    }
+
+    private void PlaySfxDead(AudioClip audioClip)
+    {
+        StopSfxDead();
+        bgSfxDead.clip = audioClip;
+        bgSfxDead.Play();
     }
 
     private void PlayBg(AudioClip clip, bool isLoop)
@@ -96,6 +108,11 @@ public class SoundManager : MonoBehaviour
     public void StopSfxUseWood()
     {
         bgSfxUseWood.Stop();
+        StopAllCoroutines();
+    }
+    public void StopSfxDead()
+    {
+        bgSfxDead.Stop();
         StopAllCoroutines();
     }
     private AudioClip GetClip(ESoundType type)
