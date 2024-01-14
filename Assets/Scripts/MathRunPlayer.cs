@@ -10,7 +10,7 @@ namespace MathRun
     public class MathRunPlayer : MonoBehaviour
     {
         [SerializeField] private MathRunWood wood;
-        [SerializeField] private CinemachineVirtualCamera camera;
+        [SerializeField] private CinemachineVirtualCamera cameraPlayer;
 
         public bool IsWin { get; set; } = false;
 
@@ -164,7 +164,7 @@ namespace MathRun
         }
         private void Dead()
         {
-            camera.Follow = null;
+            cameraPlayer.Follow = null;
             SoundManager.Instance.PlaySfx(ESoundType.Sfx_Dead);
             wood.Reset();
             _animator.SetTrigger(MathRunConfig.IDLE);
@@ -182,7 +182,7 @@ namespace MathRun
 
         public void ResetPlayer()
         {
-            camera.Follow = transform;
+            cameraPlayer.Follow = transform;
             //_animator.SetTrigger(MathRunConfig.IDLE);
             transform.localPosition = Vector3.zero;
             IsWin = false;

@@ -5,19 +5,22 @@ using TMPro;
 using UnityEngine;
 
 
-public class MathRunUI : MonoBehaviour
+namespace MathRun
 {
-    [SerializeField] private TMP_Text txtCountWood;
-    [SerializeField] private TMP_Text txtDistance;
-
-    public void SetCountWood()
+    public class MathRunUI : MonoBehaviour
     {
-        txtCountWood.text = MathRunData.Instance.CountWood.ToString();
-    }
+        [SerializeField] private TMP_Text txtCountWood;
+        [SerializeField] private TMP_Text txtDistance;
 
-    public void SetDistance()
-    {
-        txtDistance.text = MathRunData.Instance.DistanceMove.ToString()+"m";
-    }
+        public void SetCountWood()
+        {
+            txtCountWood.text = MathRunData.Instance.CountWood.ToString();
+        }
 
+        public void SetDistance()
+        {
+            txtDistance.text = MathRunData.Instance.DistanceMove.ToString() + "m";
+        }
+
+    }
 }
