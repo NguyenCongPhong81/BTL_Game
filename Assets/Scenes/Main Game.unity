@@ -22668,7 +22668,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   wood: {fileID: 214869923}
-  camera: {fileID: 1668324432}
+  cameraPlayer: {fileID: 1668324432}
 --- !u!143 &1972411857
 CharacterController:
   m_ObjectHideFlags: 0
