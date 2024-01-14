@@ -115,6 +115,22 @@ public class SoundManager : MonoBehaviour
         bgSfxDead.Stop();
         StopAllCoroutines();
     }
+
+    public void UnMuteMusic()
+    {
+        bgSfx.mute = false;
+        bgSfxDead.mute = false;
+        bgSfxUseWood.mute = false;
+        bgSource.mute = false;
+    }
+
+    public void MuteMusic()
+    {
+        bgSfx.mute = true;
+        bgSfxDead.mute = true;
+        bgSfxUseWood.mute = true;
+        bgSource.mute = true;
+    }
     private AudioClip GetClip(ESoundType type)
     {
         foreach (var entry in soundEntries)

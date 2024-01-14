@@ -29,6 +29,15 @@ namespace MathRun
         [SerializeField] Button btnMenu;
         [SerializeField] TMP_Text txtEndGameScore;
 
+        [Header("Setting")]
+        [SerializeField] private Button btnQuit;
+        [SerializeField] private Toggle toggleMusic;
+        [SerializeField] private Image toggleOn;
+        [SerializeField] private Image toggleOff;
+
+        private int toogleIndex = 0;
+
+
         private bool _isGameStarted = false;
 
         public static MathRunManager Instance;
@@ -55,6 +64,9 @@ namespace MathRun
             btnSetting.onClick.AddListener(OnClickShowSetting);
             btnReplay.onClick.AddListener(OnClickReplay);
             btnMenu.onClick.AddListener(OnClickBackMenu);
+            btnQuit.onClick.AddListener(OnClickQuit);
+            toggleMusic.onValueChanged.RemoveListener(OnToggleMusic);
+            toggleMusic.onValueChanged.AddListener(OnToggleMusic);
 
         }
 
@@ -90,6 +102,27 @@ namespace MathRun
         private void OnClickShowSetting()
         {
             popupSetting.SetActive(true);
+        }
+
+        private void OnToggleMusic(bool isOn)
+        {
+            if(!isOn)
+            {
+                SoundManager.Instance.UnMuteMusic();
+                toggleOff.gameObject.SetActive(false);
+                toggleOn.gameObject.SetActive(true);
+            }
+            else
+            {
+                SoundManager.Instance.MuteMusic();
+                toggleOff.gameObject.SetActive(true);
+                toggleOn.gameObject.SetActive(false);
+            }
+        }
+
+        private void OnClickQuit()
+        {
+            Application.Quit();
         }
         private void OnClickPlay()
         {
