@@ -3482,7 +3482,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ed486c224ceeaa6468f6e9297d63049c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  Menu: {fileID: 0}
+  Menu: {fileID: 151937288}
   isPaused: 0
 --- !u!1001 &1150590237
 PrefabInstance:
