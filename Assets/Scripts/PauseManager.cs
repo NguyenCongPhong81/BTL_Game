@@ -6,9 +6,9 @@ public class PauseManager : MonoBehaviour
 {
     // Start is called before the first frame update
     public static bool paused = false;
-
-    public GameObject menu;
     
+    public GameObject menu;
+
     PauseAction action;
 
     private void Awake(){
@@ -48,7 +48,7 @@ public class PauseManager : MonoBehaviour
     {
         Time.timeScale =1;   
         AudioListener.pause=false; 
-        paused = false;    
-        menu.SetActive(false);
+        paused = false;
+        menu.SetActive(false);  
     }
 }
