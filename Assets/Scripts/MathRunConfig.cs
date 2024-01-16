@@ -8,11 +8,11 @@ namespace MathRun
     {
         public const float TIME_END_GAME = 180f;
 
-        public const int COUNT_WOOD_START = 40;
+        public const int COUNT_WOOD_START = 100;
 
         public const int NUMBER_LIMIT_UPDATE_SPEED = 10;
         public const float SPEED_CHANGE_PERCENT = 5f;
-        public const float SPEED = 6f;
+        public const float SPEED = 8f;
         public const float HORIZONTAL_SPEED = 3f;
         public const float JUMP_FORCE = 5f;
 
@@ -25,7 +25,7 @@ namespace MathRun
         public const float LENGHT_PER_MAP = 55f;
         public const float DELTA_DISTANCE_MAP_PLAYER = 5f;
         public const float DELTA_DISTANCE_BACKGROUND_PLAYER = 10f;
-        public const float DISTANCE_PER_BACKGROUND = 400f;
+        public const float DISTANCE_PER_BACKGROUND = 470f;
 
         public const float DISTANCE_PLAYER = 0.3f;
         public const float DISTANCE_PER_WOOD = 0.1f;
@@ -38,6 +38,9 @@ namespace MathRun
         public const float GRAVITY_NORMAL = -50f;
 
         public const int POINT_BONUS = 1;
+        public const int LAYER_DEAD = 6;
+        public const int LAYER_WIN = 7;
+        public const int LAYER_PLAYER = 8;
         //anim 
 
         public const string RUN = "Run";
@@ -47,5 +50,8 @@ namespace MathRun
         public const string WIN = "Win{0}";
         public const string CHEERING = "cheering{0}";
         public const string EFFECT_BONUS = "StartEffect";
+
+
+
     }
 }

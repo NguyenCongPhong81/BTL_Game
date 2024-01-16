@@ -16,6 +16,7 @@ namespace MathRun
 
         public void Init()
         {
+            points.ForEach(p => p.Init());
             gameObject.SetActive(true);
         }
 
